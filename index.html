@@ -1,0 +1,147 @@
+<!doctype html>
+<!-- Tells the browser this is a modern HTML5 page -->
+<html lang="en">
+<!-- Page language is English (helps screen readers and translation tools) -->
+<head>
+<!-- Everything inside <head> is information about the page, not visible content -->
+<meta charset="utf-8">
+<!-- Use UTF-8 so symbols like R, £ and curly quotes display correctly -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Make the page fit the device width so it works on phones -->
+<title>Sunrise Bakery | Fresh scones, muffins & cakes online</title>
+<!-- The text shown in the browser tab and search results -->
+<meta name="description" content="Order freshly baked scones, muffins and cakes from Sunrise Bakery. Browse online, pay securely and collect or receive your order.">
+<!-- A short summary search engines may show under the title (NFR-SEO-001) -->
+<meta name="theme-color" content="#FFF8EE">
+<!-- Colour of the browser toolbar on mobile (matches the cream page background) -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<!-- The small icon shown in the browser tab -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- Start connecting to Google Fonts early so fonts load faster -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Also connect to the server that hosts the font files -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap">
+<!-- Load the two fonts used on the site: DM Sans (body) and Playfair Display (headings) -->
+<link rel="stylesheet" href="css/styles.css">
+<!-- Load the site's own stylesheet with all colours, layout and components -->
+</head>
+<!-- End of the page information -->
+<body data-page="home">
+<!-- Start of the visible page. data-page tells the scripts which menu link to highlight (data-category is used on product list pages) -->
+<noscript><div class="wrap section"><p class="notice">This page needs JavaScript to show products and your cart. Please enable it, or contact the bakery to place an order.</p></div></noscript>
+<!-- Shown only if the visitor's browser has JavaScript turned off -->
+<main id="main">
+<!-- Main page content; the id lets the "Skip to content" link jump here -->
+
+<section class="hero">
+<!-- Hero: the first thing visitors see -->
+  <div class="wrap hero__grid">
+  <!-- Centred container with two columns: text and picture -->
+    <div class="hero__copy stack">
+    <!-- Left column: the text -->
+      <span class="badge">Baked fresh every morning</span>
+      <!-- Small pill-shaped label above the heading -->
+      <h1>Warm scones, muffins &amp; cakes, ordered in minutes</h1>
+      <!-- The main page heading (only one h1 per page) -->
+      <p class="lead">Browse our freshly baked range, choose what you love and pay securely online. Collect from the bakery or have it delivered where available.</p>
+      <!-- Short introduction in larger text -->
+      <div class="btn-row">
+      <!-- Row holding the two call-to-action buttons -->
+        <a class="btn" href="scones.html">Start an order</a>
+        <!-- Main button: goes to the Scones page to begin ordering (FR-HOME-005) -->
+        <a class="btn btn--secondary" href="cakes.html">Browse cakes</a>
+        <!-- Outline button: goes to the Cakes page -->
+      </div>
+    </div>
+    <div class="photo hero__photo" role="img" aria-label="Freshly baked goods from Sunrise Bakery"><span class="photo__a"></span><span class="photo__b"></span></div>
+    <!-- Right column: a drawn placeholder picture (replace with a real hero photo later); role="img" + aria-label describe it to screen readers -->
+  </div>
+</section>
+
+<section class="section section--sand" aria-labelledby="info-h" style="padding-block:40px">
+<!-- Beige strip with ordering information (FR-HOME-004) -->
+  <div class="wrap">
+    <h2 id="info-h" class="sr-only">Ordering information</h2>
+    <!-- Heading read only by screen readers -->
+    <div class="info-strip">
+    <!-- Three-column layout -->
+      <div><h2>How ordering works</h2><p class="muted">Pick your items, review your order, pay securely and receive confirmation.</p></div>
+      <!-- Column 1: how ordering works -->
+      <div><h2>Collection &amp; delivery</h2><p class="muted">Options are confirmed by the bakery at checkout. <a href="contact.html#collection">See details</a>.</p></div>
+      <!-- Column 2: collection and delivery, linking to the Contact page -->
+      <div><h2>Lead times &amp; cut-off</h2><p class="muted" data-lead-only></p></div>
+      <!-- Column 3: lead time text, filled in by catalogue.js from config.js -->
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="cats-h">
+<!-- Category tiles section -->
+  <div class="wrap">
+    <div class="section-head"><h2 id="cats-h">Shop by category</h2></div>
+    <!-- Section heading -->
+    <div class="tiles">
+    <!-- Three tiles, one per category -->
+      <a class="tile" href="scones.html"><div class="photo" aria-hidden="true"><span class="photo__a"></span><span class="photo__b"></span></div><div class="tile__body"><h3>Scones</h3><p class="muted">Plain, fruited and savoury</p><span class="tile__link">Browse scones</span></div></a>
+      <!-- Scones tile: whole tile is a link to scones.html -->
+      <a class="tile" href="muffins.html"><div class="photo" aria-hidden="true"><span class="photo__a"></span><span class="photo__b"></span></div><div class="tile__body"><h3>Muffins</h3><p class="muted">Sweet and hearty favourites</p><span class="tile__link">Browse muffins</span></div></a>
+      <!-- Muffins tile: links to muffins.html -->
+      <a class="tile" href="cakes.html"><div class="photo" aria-hidden="true"><span class="photo__a"></span><span class="photo__b"></span></div><div class="tile__body"><h3>Cakes</h3><p class="muted">Celebration and everyday cakes</p><span class="tile__link">Browse cakes</span></div></a>
+      <!-- Cakes tile: links to cakes.html -->
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="fav-h" style="padding-top:0">
+<!-- "Today's favourites" section (FR-HOME-003) -->
+  <div class="wrap">
+    <div class="section-head"><h2 id="fav-h">Today’s favourites</h2><a class="btn btn--secondary btn--sm" href="scones.html">View all products</a></div>
+    <!-- Heading on the left, a button to the full range on the right -->
+    <div class="grid" data-featured></div>
+    <!-- Empty grid; catalogue.js fills it with the products marked featured in products.js -->
+  </div>
+</section>
+
+<section class="section section--white" aria-labelledby="how-h">
+<!-- White band explaining the ordering steps -->
+  <div class="wrap">
+    <div class="section-head"><h2 id="how-h">How it works</h2></div>
+    <!-- Section heading -->
+    <ol class="steps">
+    <!-- Ordered list: the numbers are drawn by the stylesheet -->
+      <li><strong>Choose</strong><span class="muted">Browse and add your favourites.</span></li>
+      <!-- Step 1 -->
+      <li><strong>Review</strong><span class="muted">Check items, quantities and totals.</span></li>
+      <!-- Step 2 -->
+      <li><strong>Pay securely</strong><span class="muted">Complete payment on our trusted provider’s page.</span></li>
+      <!-- Step 3 -->
+      <li><strong>Collect or receive</strong><span class="muted">We confirm and prepare your order fresh.</span></li>
+      <!-- Step 4 -->
+    </ol>
+  </div>
+</section>
+
+<section class="section section--dark" aria-labelledby="custom-h">
+<!-- Dark band promoting custom cakes (FR-CUST-005) -->
+  <div class="wrap band">
+    <div><h2 id="custom-h">Need a custom cake?</h2><p class="lead">Tell us what you have in mind. We confirm design, price and lead time with you before you pay.</p></div>
+    <!-- Heading and explanation on the left -->
+    <a class="btn" href="contact.html#custom-cakes">Enquire about a cake</a>
+    <!-- Button jumping to the custom cake section on the Contact page -->
+  </div>
+</section>
+</main>
+<!-- End of main content -->
+<!-- Scripts load in order: settings, product list, shared code, then this page's own code -->
+<script src="js/config.js"></script>
+<!-- Bakery settings (contact details, lead time, payment link) -->
+<script src="js/products.js"></script>
+<!-- The product list used by every page -->
+<script src="js/site.js"></script>
+<!-- Shared code: header, footer, cart and helper functions -->
+<script src="js/catalogue.js"></script>
+<!-- Code specific to this page (catalogue.js) -->
+</body>
+<!-- End of the visible page -->
+</html>
+<!-- End of the document -->
