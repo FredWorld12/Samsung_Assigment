@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Sunrise Bakery System – stylesheet
+   Tokens mirror the Figma file "Sunrise Bakery System – UI/UX".
+   Note: the button fill uses --brand (#C45A0A) rather than the Figma #E8741C
+   so white text meets WCAG AA contrast (NFR-ACC-001).
+   ========================================================================== */
+
+/* ---------- Design tokens (reusable colours, sizes and fonts) ---------- */
+:root {
+  --brand: #C45A0A;        /* main orange used for buttons and active links */
+  --brand-deep: #9F4407;   /* darker orange for text, prices and hover states */
+  --sun: #E8741C;          /* bright sunrise orange used in the logo */
+  --gold: #F7B731;         /* golden yellow accent */
+  --cream: #FFF8EE;        /* page background */
+  --sand: #F5E6D0;         /* soft beige used for strips and tags */
+  --peach: #FDE3C8;        /* light peach used for notices and photo placeholders */
+  --white: #FFFFFF;        /* pure white for cards and fields */
+  --ink: #3B2314;          /* dark brown used for main text */
+  --ink-2: #7A5A45;        /* lighter brown used for secondary text */
+  --line: #E8D5BC;         /* border colour */
+  --ok: #2F7D4F;          /* success green */
+  --bad: #B3261E;          /* error red */
+  --wait: #8F5F10;         /* pending amber */
+
+  --r-s: 8px;              /* small corner radius */
+  --r-m: 16px;             /* medium corner radius */
+  --r-l: 24px;             /* large corner radius */
+  --gutter: clamp(16px, 5.5vw, 80px); /* side padding: 16px on phones growing to 80px on wide screens */
+  --maxw: 1440px;          /* widest the page content may grow */
+
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;                         /* heading font with fallbacks */
+  --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;           /* body font with fallbacks */
+}
+
+/* ---------- Base / reset ---------- */
+*, *::before, *::after { box-sizing: border-box; } /* make width include padding and border so sizes are predictable */
+html {
+  -webkit-text-size-adjust: 100%; /* stop phones from enlarging text on rotation */
+  scroll-padding-top: 88px;       /* leave room under the sticky header when jumping to #anchors */
+}
+body {
+  margin: 0;                      /* remove the browser's default page margin */
+  background: var(--cream);       /* cream page background */
+  color: var(--ink);              /* dark brown text */
+  font: 400 1rem/1.5 var(--sans); /* normal weight, 16px, 1.5 line height, body font */
+}
+img { max-width: 100%; display: block; } /* images never overflow their container and have no gap underneath */
+a { color: var(--brand-deep); }          /* links use the dark orange */
+h1, h2, h3 {
+  font-family: var(--serif);  /* headings use the serif font */
+  font-weight: 700;           /* bold */
+  line-height: 1.15;          /* tight line height for big text */
+  margin: 0;                  /* remove default heading margins */
+  color: var(--ink);          /* dark brown */
+}
+h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); line-height: 1.14; } /* page title: 36px up to 56px depending on screen width */
+h2 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.2; } /* section title: 28px up to 40px */
+h3 { font-size: 1.5rem; line-height: 1.3; }                        /* sub-heading: 24px */
+p { margin: 0; }                                                   /* remove default paragraph margins */
+.lead { font-size: 1.125rem; line-height: 1.6; color: var(--ink-2); max-width: 60ch; } /* larger intro text with a readable line length */
+.muted { color: var(--ink-2); }                                    /* secondary (lighter) text colour */
+.small { font-size: .875rem; line-height: 1.45; }                  /* small print text */
+
+:focus-visible {
+  outline: 3px solid var(--ink); /* clear dark outline around whatever has keyboard focus */
+  outline-offset: 3px;           /* gap between the element and its outline */
+  border-radius: 4px;            /* slightly rounded outline corners */
+}
+.skip {
+  position: absolute;      /* take the link out of normal flow */
+  left: -999px;            /* hide it off the left edge of the screen */
+  top: 8px;                /* position it near the top */
+  background: var(--ink);  /* dark background */
+  color: var(--cream);     /* light text */
+  padding: 10px 16px;      /* inner spacing */
+  border-radius: var(--r-s); /* rounded corners */
+  z-index: 100;            /* sit above everything else */
+}
+.skip:focus { left: 8px; } /* slide into view when a keyboard user tabs to it */
+.sr-only {
+  position: absolute;      /* remove from the layout */
+  width: 1px;              /* shrink to one pixel */
+  height: 1px;             /* shrink to one pixel */
+  overflow: hidden;        /* hide any overflow */
+  clip: rect(0 0 0 0);     /* clip everything away visually */
+  white-space: nowrap;     /* keep text on one line */
+} /* "screen reader only": invisible but still read aloud */
+
+/* ---------- Layout helpers ---------- */
+.wrap {
+  width: 100%;                  /* fill the available width */
+  max-width: var(--maxw);       /* ...but never wider than the maximum */
+  margin-inline: auto;          /* centre it horizontally */
+  padding-inline: var(--gutter);/* side padding that scales with the screen */
+}
+.section { padding-block: clamp(40px, 6vw, 64px); } /* vertical spacing for page sections */
+.section--sand { background: var(--sand); }          /* beige band */
+.section--white { background: var(--white); }        /* white band */
+.section--dark { background: var(--ink); color: var(--cream); } /* dark brown band with light text */
+.section--dark h2, .section--dark h3 { color: var(--cream); }   /* headings on the dark band are light */
+.section--dark .lead { color: var(--sand); }                    /* intro text on the dark band is beige */
+.stack > * + * { margin-top: var(--gap, 16px); } /* put a gap between stacked children (size set by --gap) */
+.section-head {
+  display: flex;                 /* lay the heading and button in a row */
+  flex-wrap: wrap;               /* wrap onto two lines on narrow screens */
+  gap: 16px;                     /* space between items */
+  align-items: center;           /* line them up vertically */
+  justify-content: space-between;/* heading on the left, button on the right */
+  margin-bottom: 32px;           /* space below the heading row */
+}
