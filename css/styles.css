@@ -108,3 +108,105 @@ p { margin: 0; }                                                   /* remove def
   justify-content: space-between;/* heading on the left, button on the right */
   margin-bottom: 32px;           /* space below the heading row */
 }
+
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;          /* size to content and centre the label */
+  align-items: center;           /* centre vertically */
+  justify-content: center;       /* centre horizontally */
+  gap: 8px;                      /* space between label parts */
+  min-height: 48px;              /* comfortable touch target */
+  padding: 12px 24px;            /* inner spacing */
+  border-radius: 999px;          /* fully rounded "pill" shape */
+  border: 2px solid var(--brand);/* border matching the fill */
+  background: var(--brand);      /* solid orange fill */
+  color: #fff;                   /* white label */
+  font: 600 1rem/1.2 var(--sans);/* semi-bold button text */
+  text-decoration: none;         /* no underline on link-buttons */
+  cursor: pointer;               /* hand cursor on hover */
+  transition: background-color .15s, color .15s, border-color .15s; /* smooth colour change on hover */
+}
+.btn:hover { background: var(--brand-deep); border-color: var(--brand-deep); } /* darker orange on hover */
+.btn--secondary { background: transparent; color: var(--brand-deep); border-color: var(--brand); } /* outline version: no fill */
+.btn--secondary:hover { background: var(--peach); color: var(--brand-deep); border-color: var(--brand-deep); } /* peach fill on hover */
+.btn--dark { background: var(--ink); border-color: var(--ink); color: var(--cream); } /* dark brown version */
+.btn--dark:hover { background: #000; border-color: #000; }                              /* black on hover */
+.btn--sm { min-height: 44px; padding: 10px 18px; font-size: .9375rem; } /* smaller button */
+.btn--block { width: 100%; }                                             /* full-width button */
+.btn[aria-disabled="true"], .btn:disabled {
+  opacity: .55;                  /* fade disabled buttons */
+  cursor: not-allowed;           /* show the "not allowed" cursor */
+  pointer-events: none;          /* ignore clicks */
+}
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; } /* a row of buttons that wraps on small screens */
+
+/* ---------- Header ---------- */
+.site-header {
+  background: var(--cream);          /* cream background */
+  position: sticky;                  /* stay at the top while scrolling */
+  top: 0;                            /* stick to the very top */
+  z-index: 50;                       /* stay above page content */
+  border-bottom: 1px solid var(--line); /* thin line under the header */
+}
+.bar {
+  display: flex;                     /* logo, menu and cart in one row */
+  align-items: center;               /* centre them vertically */
+  justify-content: space-between;    /* spread them across the width */
+  gap: 16px;                         /* minimum space between them */
+  min-height: 80px;                  /* header height on desktop */
+}
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); } /* sun icon + name side by side */
+.logo__sun {
+  width: 36px;                       /* icon width */
+  height: 36px;                      /* icon height */
+  border-radius: 50%;                /* make it a circle */
+  background: var(--sun);            /* orange disc */
+  display: grid;                     /* use grid so the inner dot can be centred */
+  place-items: center;               /* centre the inner dot */
+  flex: none;                        /* never shrink the icon */
+}
+.logo__sun::after { content: ""; width: 20px; height: 20px; border-radius: 50%; background: var(--gold); } /* the golden dot in the middle of the sun */
+.logo__name { font: 700 1.5rem/1 var(--serif); } /* bakery name in the serif font */
+.nav { display: flex; gap: 40px; }               /* navigation links in a row */
+.nav a {
+  color: var(--ink);                 /* dark text */
+  text-decoration: none;             /* no underline */
+  font-weight: 600;                  /* semi-bold */
+  padding: 8px 0;                    /* vertical click area */
+  border-bottom: 2px solid transparent; /* invisible underline that can turn on */
+}
+.nav a:hover { border-color: var(--line); }                              /* light underline on hover */
+.nav a[aria-current="page"] { color: var(--brand-deep); border-color: var(--brand); } /* orange text and underline for the current page */
+.bar__actions { display: flex; align-items: center; gap: 12px; } /* cart button and Menu button together */
+.menu-btn {
+  display: none;                     /* hidden on desktop (shown on mobile below) */
+  min-height: 44px;                  /* touch-friendly height */
+  padding: 8px 14px;                 /* inner spacing */
+  background: transparent;           /* no fill */
+  border: 2px solid var(--line);     /* light outline */
+  border-radius: 999px;              /* pill shape */
+  color: var(--ink);                 /* dark text */
+  font: 600 .9375rem var(--sans);    /* semi-bold small text */
+  cursor: pointer;                   /* hand cursor */
+}
+
+@media (max-width: 860px) { /* tablets and phones */
+  .bar { min-height: 68px; }                          /* shorter header */
+  .logo__name { font-size: 1.25rem; }                 /* smaller logo text */
+  .menu-btn { display: inline-flex; align-items: center; } /* show the Menu button */
+  .nav {
+    display: none;                    /* hide the links until Menu is pressed */
+    position: absolute;               /* drop down below the header */
+    left: 0;                          /* span from the left edge */
+    right: 0;                         /* to the right edge */
+    top: 100%;                        /* directly under the header */
+    flex-direction: column;           /* stack links vertically */
+    gap: 0;                           /* no gap (each link has its own padding) */
+    background: var(--cream);         /* cream background */
+    border-bottom: 1px solid var(--line); /* line under the open menu */
+    padding: 8px var(--gutter) 16px;  /* inner spacing */
+  }
+  .nav.is-open { display: flex; }                     /* show the menu when open */
+  .nav a { padding: 14px 0; border-bottom: 1px solid var(--line); } /* bigger tap area with dividers */
+}

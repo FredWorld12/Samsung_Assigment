@@ -1,0 +1,125 @@
+<!doctype html>
+<!-- Tells the browser this is a modern HTML5 page -->
+<html lang="en">
+<!-- Page language is English (helps screen readers and translation tools) -->
+<head>
+<!-- Everything inside <head> is information about the page, not visible content -->
+<meta charset="utf-8">
+<!-- Use UTF-8 so symbols like R, £ and curly quotes display correctly -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Make the page fit the device width so it works on phones -->
+<title>Contact | Sunrise Bakery</title>
+<!-- The text shown in the browser tab and search results -->
+<meta name="description" content="Contact Sunrise Bakery about orders, collection, delivery and custom cakes.">
+<!-- A short summary search engines may show under the title (NFR-SEO-001) -->
+<meta name="theme-color" content="#FFF8EE">
+<!-- Colour of the browser toolbar on mobile (matches the cream page background) -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<!-- The small icon shown in the browser tab -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- Start connecting to Google Fonts early so fonts load faster -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Also connect to the server that hosts the font files -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap">
+<!-- Load the two fonts used on the site: DM Sans (body) and Playfair Display (headings) -->
+<link rel="stylesheet" href="css/styles.css">
+<!-- Load the site's own stylesheet with all colours, layout and components -->
+</head>
+<!-- End of the page information -->
+<body data-page="contact">
+<!-- Start of the visible page. data-page tells the scripts which menu link to highlight (data-category is used on product list pages) -->
+<noscript><div class="wrap section"><p class="notice">This page needs JavaScript to show products and your cart. Please enable it, or contact the bakery to place an order.</p></div></noscript>
+<!-- Shown only if the visitor's browser has JavaScript turned off -->
+<main id="main">
+<!-- Main page content -->
+<div class="page-head"><div class="wrap stack" style="--gap:12px">
+<!-- Page title area -->
+  <h1>Contact us</h1>
+  <!-- Page heading -->
+  <p class="lead">Questions about an order, collection or a custom cake? We’re happy to help.</p>
+  <!-- Short introduction -->
+</div></div>
+
+<section class="section" style="padding-top:24px" aria-label="Contact details and enquiries">
+<!-- Section with two side-by-side cards -->
+  <div class="wrap two">
+  <!-- Two-column layout -->
+    <div class="panel">
+    <!-- Left card: contact details (FR-CON-001/002) -->
+      <dl class="dl">
+      <!-- Description list: a label (dt) followed by its value (dd) -->
+        <div><dt>Phone</dt><dd data-c-phone></dd></div>
+        <!-- Phone number, filled in by contact.js from config.js -->
+        <div><dt>Email</dt><dd data-c-email></dd></div>
+        <!-- Email address, filled in by contact.js -->
+        <div><dt>WhatsApp</dt><dd data-c-whatsapp></dd></div>
+        <!-- WhatsApp text, filled in by contact.js -->
+        <div><dt>Opening hours</dt><dd data-c-hours></dd></div>
+        <!-- Opening hours, filled in by contact.js -->
+        <div id="collection"><dt>Collection &amp; delivery</dt><dd><span data-c-collection></span><br><span class="muted" data-c-delivery></span></dd></div>
+        <!-- Collection address and delivery info; the id lets other pages link straight here -->
+      </dl>
+    </div>
+    <div class="panel panel--peach stack" id="custom-cakes" style="--gap:20px">
+    <!-- Right card: enquiry options and custom cake process (the id is the target of "Enquire" links) -->
+      <h2>Make an enquiry</h2>
+      <!-- Card heading -->
+      <p>Choose the easiest way to reach us. For custom cakes, tell us the occasion, size, flavour and the date you need it.</p>
+      <!-- Explains what to include in an enquiry -->
+      <div class="btn-row">
+      <!-- Row of contact buttons (links are set by contact.js, FR-CON-003) -->
+        <a class="btn" data-l-email>Email us</a>
+        <!-- Opens a pre-filled email -->
+        <a class="btn btn--secondary" data-l-phone>Call us</a>
+        <!-- Starts a phone call -->
+        <a class="btn btn--secondary" data-l-whatsapp>WhatsApp</a>
+        <!-- Opens a pre-filled WhatsApp chat -->
+      </div>
+      <p class="small" data-enquiry-hint hidden></p>
+      <!-- Hint shown only while no contact details have been supplied -->
+      <h3 style="font-size:1.125rem;font-family:var(--sans)">Custom cake process</h3>
+      <!-- Sub-heading for the steps below -->
+      <ol class="process">
+      <!-- Ordered list: numbers are drawn by the stylesheet -->
+        <li>Send your requirements</li>
+        <!-- Step 1 -->
+        <li>We confirm design, price, lead time and availability</li>
+        <!-- Step 2 -->
+        <li>You receive payment instructions</li>
+        <!-- Step 3 -->
+        <li>Your order is accepted according to bakery policy</li>
+        <!-- Step 4 -->
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" id="ordering" aria-labelledby="pol-h">
+<!-- White band with ordering information and policies (FR-ADM-004); the id lets the footer link here -->
+  <div class="wrap stack" style="--gap:24px;max-width:880px;margin-inline:auto">
+  <!-- Narrow, centred column for comfortable reading -->
+    <h2 id="pol-h">Ordering information &amp; policies</h2>
+    <!-- Section heading -->
+    <div><h3 style="font-size:1.25rem;font-family:var(--sans)">Ordering &amp; lead times</h3><p class="muted" data-c-lead></p></div>
+    <!-- Lead time text, filled in by contact.js -->
+    <div id="policies"><h3 style="font-size:1.25rem;font-family:var(--sans)">Cancellations &amp; refunds</h3><p class="muted">[Policy to be supplied by the bakery before launch]</p></div>
+    <!-- Refund policy placeholder; the id lets the footer link here -->
+    <div><h3 style="font-size:1.25rem;font-family:var(--sans)">Privacy notice</h3><p class="muted">We collect only the details needed to prepare and fulfil your order. Card payments are handled by our payment provider; we never see or store your card details. [Full privacy notice to be supplied by the bakery before launch]</p></div>
+    <!-- Short privacy statement (NFR-PRIV-001/002) with a placeholder for the full notice -->
+  </div>
+</section>
+</main>
+<!-- End of main content -->
+<!-- Scripts load in order: settings, product list, shared code, then this page's own code -->
+<script src="js/config.js"></script>
+<!-- Bakery settings (contact details, lead time, payment link) -->
+<script src="js/products.js"></script>
+<!-- The product list used by every page -->
+<script src="js/site.js"></script>
+<!-- Shared code: header, footer, cart and helper functions -->
+<script src="js/contact.js"></script>
+<!-- Code specific to this page (contact.js) -->
+</body>
+<!-- End of the visible page -->
+</html>
+<!-- End of the document -->
