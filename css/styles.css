@@ -210,3 +210,335 @@ p { margin: 0; }                                                   /* remove def
   .nav.is-open { display: flex; }                     /* show the menu when open */
   .nav a { padding: 14px 0; border-bottom: 1px solid var(--line); } /* bigger tap area with dividers */
 }
+
+@media (max-width: 420px) { /* small phones */
+  .logo__name { font-size: 1.05rem; }                 /* even smaller logo text */
+  .btn--sm { padding-inline: 14px; }                  /* tighter small buttons */
+}
+
+/* ---------- Photos (real images and drawn placeholders) ---------- */
+.photo {
+  position: relative;      /* lets the placeholder shapes be positioned inside */
+  background: var(--peach);/* peach background behind the placeholder shapes */
+  overflow: hidden;        /* clip anything that sticks out */
+  aspect-ratio: 4 / 3;     /* default landscape shape */
+  width: 100%;             /* fill the container */
+}
+.photo__a, .photo__b { position: absolute; border-radius: 50%; } /* the two placeholder blobs are round and free-positioned */
+.photo__a { width: 50%; height: 55%; left: 25%; top: 30%; background: var(--sand); } /* large beige blob */
+.photo__b { width: 33%; height: 30%; left: 33.5%; top: 26%; background: var(--gold); opacity: .85; } /* smaller golden blob on top */
+.photo--img { background: var(--sand); } /* beige behind real photos while they load */
+.photo--img img {
+  width: 100%;             /* image fills the box width */
+  height: 100%;            /* image fills the box height */
+  object-fit: cover;       /* crop (don't squash) the image to fill the box */
+  object-position: 92% 50%;/* favour the right side so labels printed in the photos are not cut off */
+}
+
+/* ---------- Hero (top of the Home page) ---------- */
+.hero { padding-block: clamp(32px, 5vw, 56px) clamp(40px, 6vw, 72px); } /* space above and below the hero */
+.hero__grid {
+  display: grid;                      /* two columns: text and picture */
+  grid-template-columns: 1fr 1fr;     /* equal widths */
+  gap: clamp(32px, 5vw, 64px);        /* space between the columns */
+  align-items: center;                /* centre both columns vertically */
+}
+.hero__copy { --gap: 24px; }          /* 24px gaps between the hero text blocks */
+.hero__photo { border-radius: 32px; aspect-ratio: 560 / 440; } /* big rounded picture with the Figma proportions */
+.badge {
+  display: inline-block;              /* size to its text */
+  padding: 8px 16px;                  /* inner spacing */
+  border-radius: 999px;               /* pill shape */
+  background: var(--peach);           /* peach fill */
+  color: var(--brand-deep);           /* dark orange text */
+  font-weight: 600;                   /* semi-bold */
+  font-size: .875rem;                 /* small text */
+}
+@media (max-width: 860px) { /* tablets and phones */
+  .hero__grid { grid-template-columns: 1fr; } /* stack text above picture */
+  .hero__photo { order: 2; }                  /* make sure the picture comes after the text */
+}
+
+/* ---------- Ordering info strip ---------- */
+.info-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; } /* three equal columns */
+.info-strip h2 { font: 600 1.125rem/1.3 var(--sans); margin-bottom: 6px; }         /* small sans-serif sub-headings in the strip */
+@media (max-width: 760px) { .info-strip { grid-template-columns: 1fr; gap: 16px; } } /* one column on phones */
+
+/* ---------- Category tiles ---------- */
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; } /* three equal tiles */
+.tile {
+  display: block;                     /* behave as a block-level link */
+  background: var(--white);           /* white card */
+  border: 1px solid var(--line);      /* thin border */
+  border-radius: var(--r-l);          /* large rounded corners */
+  overflow: hidden;                   /* clip the picture to the rounded corners */
+  text-decoration: none;              /* no underline */
+  color: inherit;                     /* keep normal text colour */
+  transition: border-color .15s;      /* smooth border change on hover */
+}
+.tile:hover { border-color: var(--brand); } /* orange border on hover */
+.tile__body { padding: 20px 24px 24px; display: grid; gap: 6px; } /* text area under the picture */
+.tile__link { color: var(--brand-deep); font-weight: 600; }        /* "Browse scones" link text */
+@media (max-width: 860px) { /* tablets and phones */
+  .tiles { grid-template-columns: 1fr; gap: 12px; }                 /* stack tiles in one column */
+  .tile { display: grid; grid-template-columns: 96px 1fr; align-items: center; border-radius: var(--r-m); } /* picture on the left, text on the right */
+  .tile .photo { aspect-ratio: 1; height: 96px; }                   /* square thumbnail */
+  .tile__body { padding: 12px 16px; }                               /* tighter text padding */
+  .tile h3 { font-size: 1.25rem; }                                  /* smaller tile heading */
+}
+
+/* ---------- Product grid and cards ---------- */
+.grid {
+  display: grid;                                              /* grid layout */
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); /* as many columns as fit, each at least 255px wide */
+  gap: 24px;                                                  /* space between cards */
+  align-items: stretch;                                       /* make cards in a row the same height */
+}
+.card {
+  background: var(--white);           /* white card */
+  border: 1px solid var(--line);      /* thin border */
+  border-radius: var(--r-l);          /* large rounded corners */
+  overflow: hidden;                   /* clip the picture to the rounded corners */
+  display: flex;                      /* stack picture and text vertically */
+  flex-direction: column;             /* vertical stacking */
+}
+.card__photo { display: block; }                 /* make the picture link fill its box */
+.card__photo .photo { aspect-ratio: 16 / 10; }   /* slightly wide picture shape on cards */
+.card__body {
+  padding: 20px;                      /* inner spacing */
+  display: flex;                      /* stack the text parts */
+  flex-direction: column;             /* vertically */
+  gap: 8px;                           /* space between parts */
+  flex: 1;                            /* fill the remaining card height */
+}
+.card__name { font: 600 1.25rem/1.3 var(--sans); }                 /* product name style */
+.card__name a { color: var(--ink); text-decoration: none; }        /* name link looks like normal text */
+.card__name a:hover { text-decoration: underline; }                /* underline on hover */
+.card__desc { font-size: .875rem; color: var(--ink-2); flex: 1; }  /* short description pushes the price row to the bottom */
+.card__row {
+  display: flex;                      /* price and button in a row */
+  align-items: center;                /* centre vertically */
+  justify-content: space-between;     /* price left, button right */
+  gap: 12px;                          /* space between them */
+  flex-wrap: wrap;                    /* wrap if they don't fit */
+  margin-top: 8px;                    /* space above the row */
+}
+.price { font: 600 1.25rem/1.4 var(--sans); color: var(--brand-deep); } /* price text style */
+.tag {
+  display: inline-block;              /* size to its text */
+  padding: 8px 14px;                  /* inner spacing */
+  border-radius: 999px;               /* pill shape */
+  background: var(--sand);            /* beige fill */
+  color: var(--ink-2);                /* lighter text */
+  font-size: .8125rem;                /* small text */
+  font-weight: 600;                   /* semi-bold */
+} /* the "Currently unavailable" label */
+.card--off .photo { opacity: .55; }   /* fade the picture of unavailable products */
+.card--cta { background: var(--ink); color: var(--cream); border-color: var(--ink); padding: 32px 24px; justify-content: center; gap: 16px; } /* the dark "Custom cakes" card */
+.card--cta h3 { color: var(--cream); } /* light heading on the dark card */
+.card--cta p { color: var(--sand); }   /* beige text on the dark card */
+
+@media (max-width: 560px) { /* phones: cards become compact rows */
+  .grid { grid-template-columns: 1fr; gap: 12px; }          /* one column */
+  .card { flex-direction: row; align-items: center; border-radius: 20px; padding: 12px; gap: 12px; } /* picture on the left, text on the right */
+  .card__photo { width: 88px; flex: none; }                 /* fixed-width thumbnail */
+  .card__photo .photo { aspect-ratio: 1; border-radius: 16px; } /* square rounded thumbnail */
+  .photo--img img { object-position: 50% 50%; }             /* centre the crop on small thumbnails so the food stays visible */
+  .card__body { padding: 0; gap: 4px; }                     /* tighter text area */
+  .card__name { font-size: 1rem; }                          /* smaller name */
+  .card__row { margin-top: 4px; }                           /* less space above the price row */
+  .price { font-size: 1rem; }                               /* smaller price */
+  .card--cta { display: flex; flex-direction: column; align-items: flex-start; padding: 24px 20px; } /* custom cake card stays stacked */
+}
+
+/* ---------- Page heads, notices ---------- */
+.page-head { padding-block: 40px 8px; }                       /* space around the page title area */
+.crumbs { font-size: .875rem; color: var(--ink-2); margin-bottom: 12px; } /* breadcrumb trail text */
+.crumbs a { color: var(--ink-2); }                            /* breadcrumb links match the text colour */
+.notice { background: var(--peach); border-radius: var(--r-m); padding: 14px 20px; color: var(--ink); } /* peach information box */
+.notice--error { background: #FBE5E3; color: #6D130D; }       /* red-tinted warning box */
+.notice--ok { background: #E1F1E7; color: #1D4F31; }          /* green-tinted success box */
+
+/* ---------- Numbered steps ("How it works") ---------- */
+.steps {
+  display: grid;                       /* grid layout */
+  grid-template-columns: repeat(4, 1fr); /* four equal columns */
+  gap: 32px;                           /* space between steps */
+  list-style: none;                    /* remove default list numbers */
+  margin: 0;                           /* remove default list margins */
+  padding: 0;                          /* remove default list padding */
+  counter-reset: step;                 /* start a step counter at zero */
+}
+.steps li { counter-increment: step; display: grid; gap: 8px; align-content: start; } /* count each step and stack its text */
+.steps li::before {
+  content: counter(step);              /* show the step number */
+  width: 48px;                         /* circle width */
+  height: 48px;                        /* circle height */
+  border-radius: 50%;                  /* make it round */
+  background: var(--brand);            /* orange circle */
+  color: #fff;                         /* white number */
+  display: grid;                       /* centre the number... */
+  place-items: center;                 /* ...in both directions */
+  font-weight: 700;                    /* bold number */
+}
+.steps strong { font-size: 1.125rem; } /* step title size */
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; gap: 24px; } } /* two columns on smaller screens */
+
+/* ---------- Call-to-action band ---------- */
+.band { display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between; } /* text on the left, button on the right */
+.band > div { max-width: 56ch; display: grid; gap: 12px; } /* readable text width inside the band */
+
+/* ---------- Forms ---------- */
+.field { display: grid; gap: 6px; } /* label above input with a small gap */
+.field label, .field .label { font-weight: 600; font-size: .875rem; } /* label style */
+.field input, .field select, .field textarea {
+  width: 100%;                          /* fill the column */
+  min-height: 48px;                     /* comfortable height */
+  padding: 12px 16px;                   /* inner spacing */
+  border: 1px solid var(--line);        /* thin border */
+  border-radius: 12px;                  /* rounded corners */
+  background: var(--white);             /* white fill */
+  color: var(--ink);                    /* dark text */
+  font: inherit;                        /* use the page font */
+}
+.field textarea { min-height: 96px; resize: vertical; } /* taller notes box that can only be resized up and down */
+.field input::placeholder, .field textarea::placeholder { color: var(--ink-2); opacity: .85; } /* hint text colour */
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 3px solid var(--ink); outline-offset: 1px; } /* clear focus ring */
+.field--invalid input, .field--invalid select { border-color: var(--bad); border-width: 2px; } /* red border on fields with errors */
+.field__err { color: var(--bad); font-size: .8125rem; font-weight: 600; } /* error message text */
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }      /* two fields side by side */
+@media (max-width: 560px) { .row2 { grid-template-columns: 1fr; } }       /* stack them on phones */
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }              /* remove the default fieldset frame */
+legend { font-weight: 600; padding: 0; margin-bottom: 8px; }              /* group title style */
+
+.chips { display: flex; flex-wrap: wrap; gap: 12px; } /* row of option chips (e.g. cake sizes) */
+.chip { position: relative; display: inline-flex; }   /* each chip positions its hidden radio button */
+.chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; } /* radio button is invisible but covers the whole chip so it is clickable */
+.chip span {
+  display: inline-flex;                 /* centre the label */
+  align-items: center;                  /* vertically */
+  min-height: 48px;                     /* touch-friendly height */
+  padding: 10px 20px;                   /* inner spacing */
+  border-radius: 999px;                 /* pill shape */
+  border: 2px solid var(--line);        /* light outline */
+  font-weight: 600;                     /* semi-bold */
+  background: transparent;              /* no fill when not selected */
+}
+.chip input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--cream); } /* selected chip turns dark */
+.chip input:focus-visible + span { outline: 3px solid var(--brand); outline-offset: 3px; }            /* keyboard focus ring on the chip */
+
+.radio-card {
+  position: relative;                   /* positioning context */
+  display: flex;                        /* radio button and text in a row */
+  gap: 12px;                            /* space between them */
+  align-items: center;                  /* centre vertically */
+  padding: 14px 16px;                   /* inner spacing */
+  border-radius: var(--r-m);            /* rounded corners */
+  border: 1px solid var(--line);        /* thin border */
+  background: var(--white);             /* white fill */
+  cursor: pointer;                      /* hand cursor */
+}
+.radio-card input { accent-color: var(--brand); width: 20px; height: 20px; margin: 0; } /* orange radio button */
+.radio-card:has(input:checked) { background: var(--peach); border: 2px solid var(--brand); padding: 13px 15px; } /* highlight the chosen option (padding adjusted for the thicker border) */
+.radio-card:has(input:focus-visible) { outline: 3px solid var(--ink); outline-offset: 2px; }                   /* keyboard focus ring */
+
+.stepper { display: inline-flex; align-items: center; border: 2px solid var(--line); border-radius: 999px; background: var(--white); } /* the – 1 + quantity control */
+.stepper button { width: 44px; height: 44px; border: 0; background: transparent; font: 600 1.25rem var(--sans); color: var(--ink); cursor: pointer; border-radius: 50%; } /* round – and + buttons */
+.stepper button:hover { background: var(--peach); }                 /* peach on hover */
+.stepper output { min-width: 28px; text-align: center; font-weight: 600; } /* the number between the buttons */
+
+/* ---------- Product detail page ---------- */
+.detail { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: start; } /* picture left, details right */
+.detail .photo { border-radius: 32px; aspect-ratio: 600 / 560; }  /* large rounded picture with the Figma proportions */
+.detail__info { display: grid; gap: 20px; }                       /* spacing between the detail blocks */
+.detail__buy { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; } /* quantity stepper and Add button in a row */
+@media (max-width: 860px) { .detail { grid-template-columns: 1fr; } } /* stack picture above details on small screens */
+
+/* ---------- Cart & checkout ---------- */
+.progress { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 16px 0 0; } /* the "1 Cart / 2 Details…" steps row */
+.progress li { padding: 6px 14px; border-radius: 999px; border: 2px solid var(--line); font-size: .8125rem; font-weight: 600; color: var(--ink-2); } /* a step pill (not yet reached) */
+.progress li.is-done { background: var(--brand); border-color: var(--brand); color: #fff; } /* a completed/current step pill */
+.checkout { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 48px; align-items: start; } /* form on the left, summary on the right */
+.panel { background: var(--white); border: 1px solid var(--line); border-radius: var(--r-l); padding: 24px clamp(16px, 3vw, 32px); } /* white rounded box */
+.panel + .panel { margin-top: 24px; }              /* space between stacked panels */
+.panel--peach { background: var(--peach); border-color: var(--peach); } /* peach version used for the summary */
+.summary { position: sticky; top: 100px; display: grid; gap: 14px; }    /* summary follows you as you scroll */
+.summary__row { display: flex; justify-content: space-between; gap: 12px; } /* label left, amount right */
+.summary__total { font: 600 1.25rem var(--sans); color: var(--brand-deep); padding-top: 10px; border-top: 1px solid rgba(59,35,20,.15); } /* emphasised total with a divider above */
+.line { display: grid; grid-template-columns: 80px 1fr auto; gap: 8px 16px; align-items: center; padding-block: 16px; } /* a cart row: picture, name, price */
+.line + .line { border-top: 1px solid var(--line); } /* divider between cart rows */
+.line .photo { aspect-ratio: 1; border-radius: 16px; } /* square rounded thumbnail */
+.line__name { font-weight: 600; font-size: 1.125rem; } /* product name in the cart */
+.line__ctrl { grid-column: 2 / 4; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; } /* stepper and Remove on a second row */
+.line__price { font-weight: 600; font-size: 1.125rem; } /* line price */
+.link-btn { background: none; border: 0; padding: 8px 0; color: var(--brand-deep); font: 600 .875rem var(--sans); text-decoration: underline; cursor: pointer; } /* button that looks like a link (Remove) */
+.empty { text-align: center; padding: 48px 16px; display: grid; gap: 16px; justify-items: center; } /* centred "nothing here" message */
+@media (max-width: 980px) { .checkout { grid-template-columns: 1fr; gap: 24px; } .summary { position: static; } } /* stack the summary under the form and stop it sticking */
+@media (max-width: 480px) { .line { grid-template-columns: 64px 1fr; } .line__price { grid-column: 2; } .line__ctrl { grid-column: 1 / 3; } } /* smaller cart rows on phones */
+
+/* ---------- Contact page ---------- */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; } /* details left, enquiry card right */
+.dl { display: grid; gap: 24px; margin: 0; }                       /* list of contact details */
+.dl dt { font-weight: 600; font-size: .875rem; color: var(--brand-deep); } /* detail label (e.g. Phone) */
+.dl dd { margin: 4px 0 0; font-size: 1.125rem; }                   /* detail value */
+.process { list-style: none; counter-reset: p; padding: 0; margin: 0; display: grid; gap: 12px; } /* custom cake steps list with its own counter */
+.process li { counter-increment: p; display: flex; gap: 12px; align-items: center; }             /* number circle beside the text */
+.process li::before { content: counter(p); flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font-size: .875rem; font-weight: 700; } /* the small numbered circle */
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; gap: 24px; } } /* stack the two cards on small screens */
+
+/* ---------- Order status page ---------- */
+.status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; } /* three status cards side by side (demo view) */
+.status {
+  background: var(--white);             /* white card */
+  border: 1px solid var(--line);        /* thin border */
+  border-radius: var(--r-l);            /* large rounded corners */
+  padding: 40px 32px;                   /* roomy inner spacing */
+  text-align: center;                   /* centre the text */
+  display: grid;                        /* stack the parts */
+  gap: 16px;                            /* space between parts */
+  justify-items: center;                /* centre each part */
+}
+.status__icon { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; color: #fff; } /* round icon holder */
+.status__icon svg { width: 36px; height: 36px; }  /* icon size */
+.status--ok .status__icon { background: var(--ok); }     /* green for success */
+.status--wait .status__icon { background: var(--wait); } /* amber for pending */
+.status--bad .status__icon { background: var(--bad); }   /* red for failed */
+.status--single { max-width: 560px; margin-inline: auto; } /* a lone status card is narrower and centred */
+@media (max-width: 860px) { .status-grid { grid-template-columns: 1fr; } } /* stack the cards on small screens */
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--ink); color: var(--cream); padding-block: 56px 40px; } /* dark brown footer */
+.site-footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 48px; } /* four columns (brand wider) */
+.site-footer h2 { font: 600 1.125rem/1.3 var(--sans); color: var(--gold); margin-bottom: 12px; } /* gold column headings */
+.site-footer .logo__name { color: var(--cream); font-size: 1.5rem; } /* light bakery name */
+.site-footer p { color: var(--sand); }                 /* beige paragraph text */
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; } /* plain stacked link lists */
+.site-footer a { color: var(--cream); }                /* light link text */
+.site-footer__brand { display: grid; gap: 12px; align-content: start; } /* brand column layout */
+@media (max-width: 860px) { .site-footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; } .site-footer__brand { grid-column: 1 / -1; } } /* two columns, brand spans the top */
+@media (max-width: 480px) { .site-footer__grid { grid-template-columns: 1fr; } } /* one column on small phones */
+
+/* ---------- Toast (small pop-up message) ---------- */
+.toast {
+  position: fixed;                       /* stay in place on screen */
+  left: 50%;                             /* start at the horizontal centre... */
+  bottom: 24px;                          /* ...near the bottom */
+  transform: translate(-50%, 24px);      /* centre it and start slightly lower for the slide-up effect */
+  opacity: 0;                            /* invisible until shown */
+  pointer-events: none;                  /* can't be clicked while hidden */
+  background: var(--ink);                /* dark background */
+  color: var(--cream);                   /* light text */
+  padding: 14px 22px;                    /* inner spacing */
+  border-radius: 999px;                  /* pill shape */
+  font-weight: 600;                      /* semi-bold */
+  z-index: 80;                           /* above other content */
+  transition: opacity .2s, transform .2s;/* smooth fade and slide */
+  max-width: calc(100vw - 32px);         /* never wider than the screen */
+  text-align: center;                    /* centre the text */
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; } /* visible, in position and clickable */
+.toast a { color: var(--gold); margin-left: 8px; }                                /* gold "View cart" link */
+
+/* ---------- Accessibility and print ---------- */
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } } /* turn off motion for people who ask their device for less motion */
+@media print { .site-header, .site-footer, .toast, .skip { display: none; } } /* hide navigation and footer when printing */

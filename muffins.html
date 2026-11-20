@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- Tells the browser this is a modern HTML5 page -->
+<html lang="en">
+<!-- Page language is English (helps screen readers and translation tools) -->
+<head>
+<!-- Everything inside <head> is information about the page, not visible content -->
+<meta charset="utf-8">
+<!-- Use UTF-8 so symbols like R, £ and curly quotes display correctly -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Make the page fit the device width so it works on phones -->
+<title>Muffins | Sunrise Bakery</title>
+<!-- The text shown in the browser tab and search results -->
+<meta name="description" content="Browse and order muffins from Sunrise Bakery. Generous, tender muffins in sweet and hearty flavours.">
+<!-- A short summary search engines may show under the title (NFR-SEO-001) -->
+<meta name="theme-color" content="#FFF8EE">
+<!-- Colour of the browser toolbar on mobile (matches the cream page background) -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<!-- The small icon shown in the browser tab -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- Start connecting to Google Fonts early so fonts load faster -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Also connect to the server that hosts the font files -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap">
+<!-- Load the two fonts used on the site: DM Sans (body) and Playfair Display (headings) -->
+<link rel="stylesheet" href="css/styles.css">
+<!-- Load the site's own stylesheet with all colours, layout and components -->
+</head>
+<!-- End of the page information -->
+<body data-page="muffins" data-category="muffins">
+<!-- Start of the visible page. data-page tells the scripts which menu link to highlight (data-category is used on product list pages) -->
+<noscript><div class="wrap section"><p class="notice">This page needs JavaScript to show products and your cart. Please enable it, or contact the bakery to place an order.</p></div></noscript>
+<!-- Shown only if the visitor's browser has JavaScript turned off -->
+<main id="main">
+<!-- Main page content (the "Skip to content" link jumps here) -->
+<div class="page-head"><div class="wrap stack" style="--gap:12px">
+<!-- Page title area with 12px gaps between its parts -->
+  <p class="crumbs"><a href="index.html">Home</a> / Muffins</p>
+  <!-- Breadcrumb trail: Home / current category -->
+  <h1>Muffins</h1>
+  <!-- Page heading -->
+  <p class="lead">Generous, tender muffins in sweet and hearty flavours.</p>
+  <!-- Short introduction to the category -->
+  <p class="notice" data-lead></p>
+  <!-- Lead-time notice; catalogue.js fills in the text from config.js (FR-ORD-007) -->
+</div></div>
+<section class="section" style="padding-top:24px" aria-label="Muffins products">
+<!-- Section holding the product grid -->
+  <div class="wrap"><div class="grid" data-grid></div></div>
+  <!-- Empty grid; catalogue.js fills it with every product in this category from products.js -->
+</section>
+</main>
+<!-- End of main content -->
+<!-- Scripts load in order: settings, product list, shared code, then this page's own code -->
+<script src="js/config.js"></script>
+<!-- Bakery settings (contact details, lead time, payment link) -->
+<script src="js/products.js"></script>
+<!-- The product list used by every page -->
+<script src="js/site.js"></script>
+<!-- Shared code: header, footer, cart and helper functions -->
+<script src="js/catalogue.js"></script>
+<!-- Code specific to this page (catalogue.js) -->
+</body>
+<!-- End of the visible page -->
+</html>
+<!-- End of the document -->

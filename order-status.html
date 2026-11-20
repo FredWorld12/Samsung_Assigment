@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- Tells the browser this is a modern HTML5 page -->
+<html lang="en">
+<!-- Page language is English (helps screen readers and translation tools) -->
+<head>
+<!-- Everything inside <head> is information about the page, not visible content -->
+<meta charset="utf-8">
+<!-- Use UTF-8 so symbols like R, £ and curly quotes display correctly -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Make the page fit the device width so it works on phones -->
+<title>Order status | Sunrise Bakery</title>
+<!-- The text shown in the browser tab and search results -->
+<meta name="description" content="Check the status of your Sunrise Bakery order and payment.">
+<!-- A short summary search engines may show under the title (NFR-SEO-001) -->
+<meta name="theme-color" content="#FFF8EE">
+<!-- Colour of the browser toolbar on mobile (matches the cream page background) -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<!-- The small icon shown in the browser tab -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- Start connecting to Google Fonts early so fonts load faster -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Also connect to the server that hosts the font files -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap">
+<!-- Load the two fonts used on the site: DM Sans (body) and Playfair Display (headings) -->
+<link rel="stylesheet" href="css/styles.css">
+<!-- Load the site's own stylesheet with all colours, layout and components -->
+</head>
+<!-- End of the page information -->
+<body data-page="status">
+<!-- Start of the visible page. data-page tells the scripts which menu link to highlight (data-category is used on product list pages) -->
+<noscript><div class="wrap section"><p class="notice">This page needs JavaScript to show products and your cart. Please enable it, or contact the bakery to place an order.</p></div></noscript>
+<!-- Shown only if the visitor's browser has JavaScript turned off -->
+<main id="main">
+<!-- Main page content -->
+<div class="page-head"><div class="wrap stack" style="--gap:12px">
+<!-- Page title area -->
+  <h1>Order status</h1>
+  <!-- Page heading -->
+  <p class="lead">A status is shown only when your payment provider reports it. Opening this page alone never counts as payment.</p>
+  <!-- Explains that this page alone is not proof of payment (FR-PAY-004) -->
+</div></div>
+<section class="section" style="padding-top:24px"><div class="wrap" id="status-root"></div></section>
+<!-- Empty container; status.js fills it with the confirmed / pending / unsuccessful card -->
+</main>
+<!-- End of main content -->
+<!-- Scripts load in order: settings, product list, shared code, then this page's own code -->
+<script src="js/config.js"></script>
+<!-- Bakery settings (contact details, lead time, payment link) -->
+<script src="js/products.js"></script>
+<!-- The product list used by every page -->
+<script src="js/site.js"></script>
+<!-- Shared code: header, footer, cart and helper functions -->
+<script src="js/status.js"></script>
+<!-- Code specific to this page (status.js) -->
+</body>
+<!-- End of the visible page -->
+</html>
+<!-- End of the document -->
